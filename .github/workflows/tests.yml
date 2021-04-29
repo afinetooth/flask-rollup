@@ -49,9 +49,8 @@ jobs:
         coveralls -v --service=github-actions
         echo "GITHUB_ACTION: $GITHUB_ACTION"
         echo "GITHUB_JOB: $GITHUB_JOB"
-
-    - name: Print environment variables exposed by this action
     - uses: FranzDiebold/github-env-vars-action@v2
+    - name: Print environment variables exposed by this action
       run: |
         echo "CI_REPOSITORY_SLUG=$CI_REPOSITORY_SLUG"
         echo "CI_REPOSITORY_OWNER=$CI_REPOSITORY_OWNER"
