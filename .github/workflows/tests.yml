@@ -93,12 +93,11 @@ jobs:
       uses: octokit/request-action@v2.x
       id: current_job_id
       env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITHUB_RUN_ID: ${{ env.GITHUB_RUN_ID }}
       with:
         route: GET /repos/{owner}/{repo}/actions/runs/{run_id}/jobs
         owner: afinetooth
         repo: flask-rollup
         run_id: $GITHUB_RUN_ID
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - run: "echo current job ID: ${{ steps.current_job_id.outputs.data }}"
