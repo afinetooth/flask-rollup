@@ -99,4 +99,4 @@ jobs:
         job_id: build
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: "echo current job ID: ${{ steps.current_job_id.outputs.data }}"
+    - run: "echo current job ID: ${{ steps.current_job_id.outputs.data }}"
