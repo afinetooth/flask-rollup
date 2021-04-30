@@ -96,9 +96,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITHUB_RUN_ID: ${{ env.GITHUB_RUN_ID }}
       with:
-        route: GET /repos/{owner}/{repo}/actions/runs/{run_id}/jobs/{job}
+        route: GET /repos/{owner}/{repo}/actions/runs/{run_id}/jobs
         owner: afinetooth
         repo: flask-rollup
         run_id: ${{ github.run_id }}
-        job: ${{ github.job }}
-    - run: "echo current job ID: ${{ steps.current_job_id.outputs.data }}"
+    - run: "echo current job ID: ${{ steps.current_job_id.outputs.data.first.id }}"
