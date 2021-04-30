@@ -100,5 +100,5 @@ jobs:
         owner: afinetooth
         repo: flask-rollup
         run_id: ${{ github.run_id }}
-        run_id: ${{ github.job_id }}
+        job_id: ${{ github.job_id }}
     - run: "echo current job ID: ${{ steps.current_job_id.outputs.data }}"
