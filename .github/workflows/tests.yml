@@ -39,7 +39,7 @@ jobs:
     - name: Coveralls report
       if: matrix.python-version == 3.8
       env:
-        COVERALLS_HOST: https://3d06fff8dca5.ngrok.io
+        COVERALLS_HOST: https://aefbfcda55ba.ngrok.io
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
         GITHUB_TOKEN: $COVERALLS_REPO_TOKEN
         GITHUB_ACTION: ${{ env.GITHUB_ACTION }}
