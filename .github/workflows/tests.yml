@@ -89,3 +89,14 @@ jobs:
         echo "GITHUB_RUN_NUMBER=$GITHUB_RUN_NUMBER"
         echo "GITHUB_WORKFLOW=$GITHUB_WORKFLOW"
         echo "GITHUB_ACTION=$GITHUB_ACTION"
+    - name: Obtain Workflow Job ID from Workflow Jobs API endpoint
+      uses: octokit/request-action@v2.x
+      id: current_job_id
+      with:
+        route: GET /repos/{owner}/{repo}/runs/{job_id}
+        owner: afinetooth
+        repo: flask-rollup
+        job_id: build
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: "echo current job ID: ${{ steps.current_job_id.outputs.data }}"
