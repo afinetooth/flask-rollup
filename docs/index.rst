@@ -189,3 +189,8 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+To be deleted
+==================
+
+* comment by afinetooth
