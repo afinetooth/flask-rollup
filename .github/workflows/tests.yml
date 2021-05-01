@@ -60,4 +60,4 @@ jobs:
       env:
         jobs_data: ${{ steps.get_current_job_id.outputs.data }}
       run: |
-        echo $jobs_data | jq '.[].id'
+        echo $jobs_data | jq '.[0].id'
