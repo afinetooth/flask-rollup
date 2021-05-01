@@ -47,7 +47,7 @@ jobs:
         coveralls -v --service=github-actions
     - name: Obtain Workflow Job ID from Workflow Jobs API endpoint
       uses: octokit/request-action@v2.x
-      id: current_job_id
+      id: get_current_job_id
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITHUB_RUN_ID: ${{ env.GITHUB_RUN_ID }}
@@ -56,10 +56,10 @@ jobs:
         owner: afinetooth
         repo: flask-rollup
         run_id: ${{ github.run_id }}
-    - name: Print output from current_job_id step
-      env:
-        JOB_ID: ${{ fromJSON(steps.current_job_id.outputs.data) }} | jq '.jobs'
-      run: echo $JOB_ID
+    - run: echo "::set-output name=workflow_jobs::fromJSON(steps.get_current_job_id.outputs.data)"
+    - name: Print output from get_current_job_id step
+      run: |
+        echo $workflow_jobs | jq '.[].id'
     - name: Try Tiryoh/gha-jobid-action@v0
       uses: Tiryoh/gha-jobid-action@v0
       with:
