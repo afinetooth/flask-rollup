@@ -45,7 +45,7 @@ jobs:
       run: |
         python -m pip install -U PyYAML coveralls
         coveralls -v --service=github-actions
-    - name: Obtain Workflow Job ID from Workflow Jobs API
+    - name: Get Job ID from Workflow Jobs API
       uses: octokit/request-action@v2.x
       id: get_current_job_id
       env:
@@ -56,9 +56,8 @@ jobs:
         owner: afinetooth
         repo: flask-rollup
         run_id: ${{ github.run_id }}
-    - name: Print output from get_current_job_id step
+    - name: Print Job ID from get_current_job_id step
       env:
         jobs_data: ${{ steps.get_current_job_id.outputs.data }}
       run: |
         echo $jobs_data | jq '.jobs | map({ id: .id, name: .name, html_url: .html_url } | select(.name == "build (3.8)")) | .[0].id'
-        echo $GITHUB_ENV
