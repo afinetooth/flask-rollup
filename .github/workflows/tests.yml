@@ -56,7 +56,7 @@ jobs:
         owner: afinetooth
         repo: flask-rollup
         run_id: ${{ github.run_id }}
-    - run: "echo current job ID: ${{ fromJSON(steps.current_job_id.outputs.data) }}"
+    - run: "echo current job ID: ${{ fromJSON(steps.current_job_id.outputs.data) | jq '.jobs | map({ name: .name, html_url: .html_url' } }}"
     - name: Try Tiryoh/gha-jobid-action@v0
       uses: Tiryoh/gha-jobid-action@v0
       with:
