@@ -60,5 +60,5 @@ jobs:
       env:
         jobs_data: ${{ steps.get_current_job_id.outputs.data }}
       run: |
-        echo $jobs_data | jq '.jobs | map({ id: .id, name: .name, html_url: .html_url } | select(.name == "build (3.8)")) | grep id'
+        echo $jobs_data | jq '.jobs | map({ id: .id, name: .name, html_url: .html_url } | select(.name == "build (3.8)")) | .id'
         echo $GITHUB_ENV
