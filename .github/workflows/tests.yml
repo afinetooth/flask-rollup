@@ -45,7 +45,7 @@ jobs:
       run: |
         python -m pip install -U PyYAML coveralls
         coveralls -v --service=github-actions
-    - name: Obtain Workflow Job ID from Workflow Jobs API endpoint
+    - name: Obtain Workflow Job ID from Workflow Jobs API
       uses: octokit/request-action@v2.x
       id: get_current_job_id
       env:
@@ -60,4 +60,4 @@ jobs:
       env:
         jobs_data: ${{ steps.get_current_job_id.outputs.data }}
       run: |
-        echo $jobs_data | jq '.jobs | .[0].id'
+        echo $jobs_data | jq '.jobs | select(.name == \"${INPUT_JOB_NAME}\"))'
